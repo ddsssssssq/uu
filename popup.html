@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page Insight</title><link rel="stylesheet" href="popup.css"></head>
+<body>
+  <main class="shell">
+    <header class="hero"><div class="mark">✦</div><div><p class="eyebrow">EXTRACT PAGE INFO</p><h1 id="appTitle">Extract page info with one click</h1><p id="subtitle">把网页变成可直接使用的信息</p></div><button id="settings" class="icon-button" title="设置">⚙</button></header>
+    <section class="page-card"><div class="favicon" id="favicon">◎</div><div class="page-meta"><strong id="pageTitle">正在读取页面…</strong><span id="pageHost">—</span></div><span class="status-dot"></span></section>
+    <section class="actions">
+      <button class="action is-active" data-action="insight"><span class="action-icon">✦</span><span><b id="insightLabel">提取重要信息</b><small id="insightHint">标题、主题、摘要、关键段落和链接</small></span><span class="arrow">↗</span></button>
+      <button class="action" data-action="page"><span class="action-icon">▤</span><span><b id="pageLabel">复制当前页面</b><small id="pageHint">复制清理后的完整正文</small></span><span class="arrow">↗</span></button>
+      <button class="action" data-action="selection"><span class="action-icon">⌁</span><span><b id="selectionLabel">复制选中内容</b><small id="selectionHint">保留你当前选中的文字</small></span><span class="arrow">↗</span></button>
+    </section>
+    <section class="tip"><span>⌘</span><p><b id="shortcutTitle">快捷键</b><br><span id="shortcutText">Ctrl / ⌘ + Shift + I 提取信息 · Ctrl / ⌘ + Shift + Y 复制页面</span></p></section>
+    <div id="copyToast" class="copy-toast" role="status" aria-live="polite"><span id="toastIcon">✓</span><span id="toastText"></span></div>
+    <footer><span id="privacy">内容只在本地处理，不上传页面数据</span></footer>
+  </main>
+  <script src="i18n.js"></script><script src="popup.js"></script>
+</body></html>

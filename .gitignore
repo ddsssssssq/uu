@@ -1,0 +1,12 @@
+# Signing keys and credentials must never be published.
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+*.crx
+*.zip
+node_modules/
+.DS_Store
+Thumbs.db
