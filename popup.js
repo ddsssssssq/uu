@@ -19,16 +19,6 @@ async function copy(text) {
     catch { toast(t.copyFailed, 'error'); return false; }
   }
 }
-async function requestPage(tabId, action) {
-  let response;
-  try { response = await chrome.tabs.sendMessage(tabId, { action }); } catch {}
-  if (response?.text) return response;
-  try {
-    await chrome.scripting.executeScript({ target: { tabId }, files: ['i18n.js', 'content.js'] });
-    response = await chrome.tabs.sendMessage(tabId, { action });
-    return response;
-  } catch (error) { throw new Error(error?.message || '页面脚本无法注入'); }
-}
 chrome.tabs.query({ active:true, currentWindow:true }, tabs => { const tab=tabs[0]; $('#pageTitle').textContent=tab?.title||'—'; try { $('#pageHost').textContent=new URL(tab.url).host; $('#favicon').textContent=(new URL(tab.url).hostname||'◎')[0].toUpperCase(); } catch {} });
 document.querySelectorAll('.action').forEach(button => button.addEventListener('click', async () => {
   await languageReady;
@@ -36,9 +26,9 @@ document.querySelectorAll('.action').forEach(button => button.addEventListener('
   button.classList.add('is-active');
   button.focus({ preventScroll: true });
   const action=button.dataset.action;
-  const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
   try {
-    const response=await requestPage(tab.id, action==='insight'?'extract-insight':action==='page'?'copy-page':'selection');
+    const [tab]=await chrome.tabs.query({active:true,currentWindow:true});
+    const response=await requestPage(tab?.id, action==='insight'?'extract-insight':action==='page'?'copy-page':'selection');
     if(action==='selection' && !response?.text) return toast(t.none, 'error');
     if(response?.text) await copy(response.text); else toast(t.copyFailed, 'error');
   } catch (error) { toast(`${t.copyFailed} (${error.message})`, 'error'); }

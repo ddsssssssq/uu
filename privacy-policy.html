@@ -19,7 +19,7 @@
   <header>
     <p>Extract page info with one click</p>
     <h1>Privacy Policy / 隐私政策</h1>
-    <p class="date">Effective date / 生效日期：2026-09-06 · Extension version / 扩展版本：1.3.0</p>
+    <p class="date">Effective date / 生效日期：2026-09-06 · Extension version / 扩展版本：1.3.1</p>
     <nav aria-label="Language"><a href="#english">English</a><a href="#chinese" lang="zh-CN">简体中文</a></nav>
   </header>
   <section id="english" lang="en">
@@ -27,12 +27,12 @@
     <p>This policy describes how Extract page info with one click handles information to extract webpage details and copy page text or selected text. The extension does not require a separate account.</p>
     <h2>Webpage content and selected text</h2>
     <p>The extension can read a page's title, URL, description, headings, paragraphs and links to produce the information you request. This processing happens in your browser. The publisher does not receive or store this content on a server.</p>
-    <p>Where browser site-access settings allow it, a bundled content script loads automatically on supported webpages. It listens for selection events and temporarily remembers selected text in the page's memory so that a floating copy button and the popup can copy your selection. This feature is active before a popup button is clicked. The extension does not keep a persistent history of selected text or extracted pages.</p>
+    <p>The extension does not declare persistent host permissions or automatically load content scripts across websites. Only after you choose a popup action or invoke an extension keyboard shortcut does it use activeTab temporary access and scripting to inject bundled code into the current tab. Once activated, that document listens for selection events and temporarily remembers selected text to support a floating copy button and popup copying. This listener ends when the document is reloaded or closed; a new document requires another explicit action. The extension does not keep a persistent history of selected text or extracted pages.</p>
     <h2>Clipboard</h2>
     <p>A copy button or extension keyboard shortcut writes the requested text to your system clipboard. The extension does not read existing clipboard contents. Copied text may remain in the clipboard or operating-system clipboard history according to your device settings, and other applications may access it under their own permissions. Clearing a webpage does not clear your clipboard.</p>
     <h2>Preferences and browser sync</h2>
     <p>The extension saves the language preference and the current privacy-setting value through <code>chrome.storage.sync</code>. Your browser provider may synchronise these preferences between devices when browser sync is enabled. Webpage text and selected text are not saved to this sync storage. The publisher does not operate the browser's sync service.</p>
-    <p>In version 1.3.0, the privacy-setting checkbox saves a preference only; changing it does not enable any server-side processing. Page content is processed locally in either setting.</p>
+    <p>In version 1.3.1, the privacy-setting checkbox saves a preference only; changing it does not enable any server-side processing. Page content is processed locally in either setting.</p>
     <h2>Sharing and limited use</h2>
     <p>The extension does not send webpage content, selected text or browsing history to the publisher, analytics services, advertising services or external AI services. It does not sell this information or use it for advertising, creditworthiness or lending decisions. Data is used only for the page-extraction and copying features described here, consistent with the Chrome Web Store User Data Policy and its Limited Use requirements.</p>
     <p>All executable extension code is included in the installation package. The extension does not download and execute remote code.</p>
@@ -47,12 +47,12 @@
     <p>本政策说明 Extract page info with one click 在提取网页信息、复制网页文字和选中文字时如何处理数据。使用扩展无需另行注册账号。</p>
     <h2>网页内容与选中文字</h2>
     <p>扩展根据你的操作读取当前网页的标题、网址、简介、各级标题、段落和链接，处理过程在浏览器中进行。发布者不会在服务器上接收或保存这些内容。</p>
-    <p>在浏览器允许访问的网站上，扩展内置的页面脚本会自动加载，监听选区变化，并将选中文字暂存在当前页面内存中，以便显示浮动复制按钮和通过弹窗复制。这项功能在点击弹窗按钮之前就会运行。扩展不持久保存选中文字或提取记录。</p>
+    <p>扩展不声明持久主机权限，也不会在所有网站自动加载页面脚本。仅在你点击弹窗中的功能按钮或触发扩展快捷键后，才通过 activeTab 临时授权和 scripting 在当前标签页注入内置代码。启用后，该文档会监听选区变化并在页面内存中暂存选中文字，以支持浮动复制按钮和弹窗复制；文档刷新或关闭后监听结束，新文档需要再次主动操作才能启用。扩展不持久保存选中文字或提取记录。</p>
     <h2>剪贴板</h2>
     <p>点击复制按钮或触发扩展快捷键后，扩展将相应文字写入系统剪贴板，不读取原有剪贴板内容。复制的文字可能按照系统设置保留在剪贴板或剪贴板历史记录中；其他应用能否访问取决于其权限。关闭网页不会清空剪贴板。</p>
     <h2>偏好设置与浏览器同步</h2>
     <p>语言偏好和当前隐私设置值保存在 <code>chrome.storage.sync</code> 中。启用浏览器同步后，浏览器提供商可能会在设备之间同步这些偏好设置；网页正文和选中文字不会写入该同步存储。发布者不运营此同步服务。</p>
-    <p>1.3.0 版本的“隐私模式”复选框仅保存偏好值，切换它不会开启服务器处理。无论该选项如何设置，页面内容均在本地处理。</p>
+    <p>1.3.1 版本的“隐私模式”复选框仅保存偏好值，切换它不会开启服务器处理。无论该选项如何设置，页面内容均在本地处理。</p>
     <h2>共享与有限用途</h2>
     <p>扩展不会将网页内容、选中文字或浏览历史发送给发布者、分析服务、广告服务或外部 AI 服务，不出售这些信息，不将其用于广告、信用评估或贷款决策。数据仅用于本政策描述的提取和复制功能，遵循 Chrome Web Store 用户数据政策及其有限用途要求。所有可执行代码均随安装包提供，不下载并执行远程代码。</p>
     <h2>保留与控制</h2>

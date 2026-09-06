@@ -1,3 +1,6 @@
+(() => {
+if (globalThis.__pageInfoContentLoaded) return;
+globalThis.__pageInfoContentLoaded = true;
 const clean = value => (value || '').replace(/\s+/g, ' ').trim();
 const unique = values => [...new Set(values.map(clean).filter(value => value.length > 20))];
 let lastSelection = clean(window.getSelection()?.toString());
@@ -106,16 +109,19 @@ function formatInsight(data, lang = 'zh') {
 function fullText() {
   const clone = document.body.cloneNode(true);
   clone.querySelectorAll('script, style, noscript, nav, footer, header, aside, form, svg').forEach(node => node.remove());
-  return clean(clone.innerText).replace(/\s{2,}/g, '\n');
+  return clean(clone.innerText || clone.textContent).replace(/\s{2,}/g, '\n');
 }
 
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
   if (message.action === 'extract-insight') {
-    chrome.storage.sync.get({language:'auto'}).then(settings => respond({ text: formatInsight(pageData(), resolvePageLanguage(settings.language)) }));
+    chrome.storage.sync.get({language:'auto'})
+      .then(settings => respond({ text: formatInsight(pageData(), resolvePageLanguage(settings.language)) }))
+      .catch(error => respond({ error: error.message }));
     return true;
   }
   if (message.action === 'copy-page') respond({ text: `${document.title}\n${location.href}\n\n${fullText()}` });
-  if (message.action === 'selection') respond({ text: lastSelection || clean(window.getSelection()?.toString()) });
+  if (message.action === 'selection') respond({ text: clean(window.getSelection()?.toString()) || lastSelection });
   if (message.action === 'page-data') respond({ data: pageData(), fullText: fullText() });
-  return true;
+  return false;
 });
+})();
